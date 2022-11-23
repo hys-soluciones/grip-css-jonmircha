@@ -73,4 +73,233 @@ img {
   /* Grip de 4C*5F */
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 18.5% 29% 29% 19%;
+  grid-template-columns: 20% 30% 30% 20%;
+  grid-template-rows: repeat(5, auto);
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+  grid-gap: 1rem 1rem;
+
+  /* gap: row column (Para darle separacion a las filas y columnas)*/
+
+  gap: 1vh 1vw;
+  gap: 0;
+}
+.grid-explicit .item:nth-child(10) {
+  background-color: #f00;
+  /* Propiedades para definir posiciones a tomar */
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  /* Atajo de estas propiedades */
+  grid-row: 2/3;
+  grid-column: 3/4;
+  /* grid-area: grid-row-start/grid-row-end/grid-column-start/grid-column-end*/
+  grid-area: 2/3/3/5;
+}
+.grid-explicit .item:nth-child(12) {
+  background-color: #0f0;
+  grid-row: span 2;
+  grid-column: span 3;
+}
+.grid-explicit .item:nth-child(15) {
+  background-color: #00f;
+  grid-row: 1 / span 2;
+  grid-column: 1 / span 2;
+}
+/* 
+Grid con Nombres de Línea
+*/
+.grid-line-names {
+  display: grid;
+  /* Grip de 3*3 */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  /* Colocandole nombre a las lineas */
+  grid-template-columns: [linea-c1] 1fr [linea-c2] 1fr [linea-c3]1fr [linea-c4];
+  grid-template-rows: [linea-r1] 1fr [linea-r2] 1fr [linea-r3]1fr [linea-r4];
+  grid-template-rows: [linea-r1] auto [linea-r2] auto [linea-r3]auto [linea-r4];
+}
+.grid-line-names .item:nth-child(3) {
+  background-color: #f2a;
+  grid-row: linea-r3/linea-r4;
+  grid-column: linea-c1/linea-c4;
+}
+/* ---Grid con Áreas--- */
+.grid-areas {
+  display: grid;
+  /* Grid de 2 columnas * 3 Filas */
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: 100px 1fr 60px;
+  grid-template-rows: 100px repeat(2, 1fr) 60px;
+  grid-template-areas:
+    "header header"
+    "content sidebar"
+    "content ."
+    "footer footer";
+}
+.header {
+  background-color: #00f;
+  grid-area: header;
+}
+.content {
+  background-color: #0f0;
+  grid-area: content;
+}
+.sidebar {
+  background-color: #f00;
+  grid-area: sidebar;
+}
+.footer {
+  background-color: #f2a;
+  grid-area: footer;
+}
+
+/* Grid Implícita */
+.grid-implicit {
+  width: 40%;
+  display: grid;
+  /* Grid 4c * 3r */
+  display: grid;
+  display: inline-grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 100px);
+  /* grid-template-rows: repeat(3, 1fr); */
+}
+
+/* ---Flujo de la Grid--- */
+
+.grid-flow {
+  display: grid;
+  /* Grid de 5C * 4r */
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 120px);
+  grid-auto-flow: row;
+  grid-auto-rows: 100px;
+  grid-auto-flow: column;
+  grid-auto-columns: 50px; /* le desimos el tamaña que debe de tener los cuadros que se salgan de la cuadricula */
+}
+.grid-flow-danse {
+  display: grid;
+  /* Grid de 5C * 4R */
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 120px);
+  grid-auto-flow: row dense; /* Con dense se rellenan los espacios bacios que quedaron */
+  grid-auto-flow: column dense;
+}
+/* .grid-flow-danse .item:nth-child(9) {
+  background-color: aqua;
+  grid-row: span 3;
+  grid-column: span 3;
+} */
+.grid-flow-danse .item:nth-child(11) {
+  background-color: aqua;
+  grid-row: span 3;
+  grid-column: span 3;
+}
+
+/* --Grid Items en Capas (superposición)-- */
+
+.grid-layers {
+  display: grid;
+  /* Grid de 4*4 */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+.grid-layers .item:nth-child(1) {
+  background-color: #ddca33;
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+.grid-layers .item:nth-child(2) {
+  background-color: #250aed;
+  grid-column: 3/5;
+  grid-row: 1/3;
+}
+.grid-layers .item:nth-child(3) {
+  background-color: #19e0ab;
+  grid-column: 1/3;
+  grid-row: 3/5;
+}
+.grid-layers .item:nth-child(4) {
+  background-color: #16c109;
+  grid-column: 3/5;
+  grid-row: 3/5;
+}
+.grid-layers .item:nth-child(5) {
+  background-color: #ef0c1c;
+  opacity: 0.75;
+  grid-column: 2/4;
+  grid-row: 2/4;
+}
+
+/* ---Ordenamiento de Grid Items--- */
+/* Este order aplica con respecto al flujo natural de la grid */
+.grid-order {
+  display: grid;
+  /* gid de 3 * 2*/
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  /* grid-auto-flow: column; */
+}
+.grid-order .item:nth-child(1) {
+  /* Defailt es 0  -1, 0, 1 Recibe valores negativos y positivos*/
+  order: 1;
+}
+.grid-order .item:nth-child(2) {
+  /* Defailt es 0  -1, 0, 1 */
+  order: 2;
+}
+.grid-order .item:nth-child(5) {
+  /* Defailt es 0  -1, 0, 1 */
+  order: -1;
+}
+
+/* Alineamiento de Grid Items */
+
+.grid-align {
+  display: grid;
+  /* grid de 3 * 2*/
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, 200px);
+  /* Es to es respecto a la X */
+  justify-items: stretch;
+  justify-items: center;
+  justify-items: start;
+  justify-items: end;
+  /* Es to es respecto a la Y */
+  align-items: stretch;
+  align-items: start;
+  align-items: end;
+  align-items: center;
+}
+
+.grid-align .item:nth-child(4) {
+  justify-self: start; /* Solamente este elemento */
+  align-self: start;
+}
+
+/* --Alineamiento de Grid Tracks-- */
+
+.grid-align-tracks {
+  display: grid;
+  /* grid de 3C * 2F */
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(2, 200px);
+  /* justify-content alinea los trach en la grid en el eje orizontal (X) */
+  justify-content: start;
+  justify-content: end;
+  justify-content: center;
+  justify-content: space-between;
+  justify-content: space-around;
+  justify-content: space-evenly;
+
+  /* align-content alinea los trach en la grid en el eje vertical (Y) */
+  align-content: start;
+  align-content: end;
+  align-content: center;
+  align-content: space-between;
+  align-content: space-around;
+  align-content: space-evenly;
 }
