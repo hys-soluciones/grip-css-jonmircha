@@ -303,3 +303,27 @@ Grid con Nombres de Línea
   align-content: space-around;
   align-content: space-evenly;
 }
+
+/* Tamaños Máximos y Mínimos de Grid Tracks */
+.grid-min-max {
+  display: grid;
+  /* El flujo por defecto es por fila */
+  /* Grid de 4C ?F */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(100px, 200px));
+  grid-template-columns: repeat(4, minmax(min-content, 200px));
+  grid-template-columns: repeat(4, minmax(100px, max-content));
+  grid-template-columns: repeat(4, minmax(max-content, 200px));
+  grid-template-columns: repeat(4, minmax(min-content, max-content));
+}
+
+/* Grid con Patrones Repetitivos */
+
+.grid-repeat {
+  display: grid;
+  /* Grid de 4C */
+  grid-template-columns: repeat(4, 10% 20% 30% 40%);
+  grid-template-columns: repeat(1, 10% 20% 30% 40%);
+  grid-template-rows: repeat(2, 40px 70px);
+  grid-auto-rows: 150px; /* con esto le damos un valor determinado a las grid que quedan  con valores del viwport */
+}
